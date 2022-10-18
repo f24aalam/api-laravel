@@ -9,7 +9,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $response = Http::get(config('newapi.base_url') . '/everything?q=Apple&from=2022-10-14&sortBy=popularity&apiKey=' . config('newapi.api_key'));
-        dd($response->json());
+        $response = Http::get(config('newapi.base_url') . '/top-headlines?country=in&apiKey=' . config('newapi.api_key'))
+            ->json();
+
+        return view('index', compact('response'));
     }
 }
